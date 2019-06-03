@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Auto Mart</title>
+        <link rel="stylesheet" href="../css/buycar.css">
+    </head>
+    <body>
+        <div class="user_title" >
+            <h2>User Name</h2>
+        </div>
+        <div class="row">
+            <div class="column_left" >
+                <div class="navbar" >
+                    <a href="./user_home.html" >Home</a>
+                    <a href="./post_car.html">POST A CAR</a>
+                    <a href="./buy_car.html" class="active" >BUY A CAR</a>
+                    <a href="./update_price.html">YOUR CARS</a>
+                </div>
+            </div>
+            <div class="column_center">
+                <h2> WANT TO BUY A CAR ? </h2>
+                <p> Insert Car Details Below </p>
+                <form action="">
+                    <table style="margin:10px 0px 0px 15%;" >
+                        <tr><td colspan="2" ><input type="text" placeholder="Car Make" required ></td></tr>
+                        <tr><td colspan="2" ><input type="text" placeholder="Car Model" required ></td></tr>
+                        <tr><td colspan="2" ><input type="text" placeholder="Body Type" required ></td></tr>
+                        <tr><td colspan="2" ><input type="number" min="1" placeholder="Amount( Frws)" required ></td></tr>
+                        <tr>
+                            <td style="text-align:center;" ><button type="submit" > BUY </button></td>
+                            <td style="text-align:center;" ><button type="reset" > CANCEL </button></td>
+                        </tr> 
+                    </table>
+                </form>
+            </div>
+            <div class="column_right" >
+                <h3>RECENT PURCHASES</h3>
+                <ul style="text-align:left;" >
+                    <li><a href="">Benz, 1999, Hard BOdy, 8M</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer" >
+            <h5> &#169 Auto Mart <script type="text/javascript">document.write( new Date().getFullYear() );</script>.</h5>
+        </div>
+        <script src="./scripts/javascript.js" ></script>
+    </body>
+</html>
