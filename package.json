@@ -1,0 +1,34 @@
+{
+  "name": "Auto_Mart",
+  "version": "1.0.0",
+  "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With\r Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon --exec babel-node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mutabazigakuba/Auto_Mart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mutabazigakuba/Auto_Mart/issues"
+  },
+  "homepage": "https://github.com/mutabazigakuba/Auto_Mart#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4"
+  }
+}
