@@ -15,6 +15,21 @@ const PurchaseController = {
         })
     },
 
+    updatePrice(req, res){
+        const update_price = PurchaseModel.updatePriceOfOrder(req, req);
+        if(update_price.status === false){
+            return res.status(401).send({
+                status: 401,
+                Error: update_price.message,
+            })
+        }
+        return res.status(200).send({
+            status: 200,
+            data: update_price.data
+        })
+            
+    }
+
 }
 
 export default PurchaseController;

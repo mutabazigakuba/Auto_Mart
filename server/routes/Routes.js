@@ -9,5 +9,6 @@ routes.post('/api/v1/auth/signup', User.create);
 routes.post('/api/v1/auth/signin', User.login);
 routes.post('/api/v1/car', Car.postCar);
 routes.post('/api/v1/order', Order.makeOrder);
+routes.patch('/api/v1/order/:id/price', Order.updatePrice)
 
 export default routes;

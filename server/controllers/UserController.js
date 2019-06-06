@@ -32,7 +32,7 @@ const UserController = {
                 Error: login_user.message,
             })
         }
-               
+      
         return res.status(200).send({
             status: 200,
             data: login_user.data

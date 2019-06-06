@@ -45,4 +45,17 @@ describe ('Auto_Mart', () =>{
                 done()
         })
     })
+
+    describe('PATCH REQUEST', () => {
+        it('Return on UpdatePrice to be JSON', (done) =>{
+            chai.request(app)
+                .patch('/api/v1/order/:id/price')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                } )
+                done()
+        })
+        
+    })
+    
 })
