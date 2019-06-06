@@ -35,5 +35,14 @@ describe ('Auto_Mart', () =>{
                 })
                 done()
         } )
+
+        it('Return on MakeOrder to be JSON', (done) =>{
+            chai.request(app)
+                .post('/api/v1/order')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                })
+                done()
+        })
     })
 })
