@@ -26,5 +26,14 @@ describe ('Auto_Mart', () =>{
                 })
                 done()
         } )
+
+        it('Return on PostCar to be JSON', (done) =>{
+            chai.request(app)
+                .post('/api/v1/car')
+                .end ((req, res) => {
+                    expect(res).to.be.json;    
+                })
+                done()
+        } )
     })
 })
