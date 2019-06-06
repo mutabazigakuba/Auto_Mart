@@ -24,6 +24,35 @@ class UserModel {
         this.users.push(newUser);
         return newUser;
     }
+
+    login( email, password){
+        const findUser = this.users.find( user => user.email === email.body.email);
+        if(!findUser){
+            return {
+                status: false,
+                message: "Unregistered User"
+            }
+        }
+        const comparePassword = helper.comparePassword(findUser.password, password)
+        if(!comparePassword){
+            return{
+                status:false,
+                message:"Wrong Password Please"
+            }
+        }
+
+        const token = helper.generateToken(findUser.token)
+        return{
+            status:true,
+            data: {
+                "token": token,
+                "id": findUser.id,
+                "first_name": findUser.first_name,
+                "last_name": findUser.last_name,
+                "email": findUser.email
+            }
+        }
+    }
 }
 
 export default new UserModel;
