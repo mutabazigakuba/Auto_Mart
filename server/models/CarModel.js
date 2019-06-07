@@ -10,7 +10,7 @@ class CarModel {
         const newCar = {
             id: this.cars.length + 1,
             owner: data.body.owner,
-            created_on: moment.now,
+            created_on: moment.now(),
             state: data.body.state,
             status: data.body.status,
             price:data.body.price,
@@ -22,8 +22,12 @@ class CarModel {
         return newCar;
     }
 
+    findOne(id){
+        return this.cars.find( car => car.id === id);
+    }
+
     update(id, data){
-        const car_sold = this.cars.find( car_sold => car_sold.id === id);
+        const car_sold = this.findOne(id);
         if(!car_sold){
             return{
                 status:false,
@@ -34,7 +38,7 @@ class CarModel {
         this.cars[index].status = data['status'] || car_sold.status;
         this.cars[index].owner = data['owner'] || car_sold.owner;
         this.cars[index].state = data['state'] || car_sold.state;
-        this.cars[index].status = data['status'] || car_sold.status;
+        this.cars[index].status = data.body.change_status || car_sold.status;
         this.cars[index].price = data['price'] || car_sold.price;
         this.cars[index].manufacturer = data['manufacturer'] || car_sold.manufacturer;
         this.cars[index].model = data['model'] || car_sold.model;
@@ -43,12 +47,13 @@ class CarModel {
         return{
             status:true,
             data:{
-                id: car_sold,
+                id: car_sold.id,
                 owner: this.cars[index].owner,
                 created_on: this.cars[index].created_on,
                 state: this.cars[index].state,
                 status: this.cars[index].status,
                 price:this.cars[index].price,
+                new_price: data.body.new_price,
                 manufacturer:this.cars[index].manufacturer,
                 model:this.cars[index].model,
                 body_type:this.cars[index].body_type
@@ -68,8 +73,8 @@ class CarModel {
         return {
             status:true,
             data:{
-                id: specific_Car,
-                owner: this.cars[index].owner,
+                id: specific_Car.id,
+                owner: specific_Car.owner,
                 created_on: this.cars[index].created_on,
                 state: this.cars[index].state,
                 status: this.cars[index].status,

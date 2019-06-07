@@ -30,13 +30,14 @@ const CarController = {
     },
 
     updatePrice (req, res){
-        const update_price = CarModel.update(req, req);
-        if(update_price.status === false){
+        const find = CarModel.findOne(parseInt(req.params.id));
+        if(!find){
             return res.status(401).send({
                 status: 401,
-                Error: update_price.message,
+                Error: "Car with that price not found",
             })
         }
+        const update_price = CarModel.update(parseInt(req.params.id), req)
         return res.status(200).send({
             status: 200,
             data: update_price.data
@@ -44,7 +45,7 @@ const CarController = {
     },
 
     displayOne(req, res){
-        const spec_car = CarModel.findOneCar(req, req);
+        const spec_car = CarModel.findOneCar(parseInt(req.params.id));
         if(spec_car.status === false){
             return res.status(401).send({
                 status: 401,

@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { stringify } from 'querystring';
 
 class PurchaseModel {
 
@@ -19,14 +20,12 @@ class PurchaseModel {
         return newOrder;
     }
 
+    findOne(id){
+         return this.orders.find(order => order.id === id);
+    }
+
     updatePriceOfOrder(id,data){
-        const order = this.orders.find(order => order.id === id);
-        if(!order){
-            return{
-                status: false,
-                message: "order does not exist"
-            }
-        }
+        const order = this.findOne(id);
         const index = this.orders.indexOf(order);
         const order_status = this.orders[index].status;
         if(!order_status == "pending"){
@@ -42,12 +41,12 @@ class PurchaseModel {
         return {
             status: true,
             data: {
-                car_id: this.order.car_id,
+                id:order.id,
+                car_id:this.orders[index].car_id,
                 created_on: moment.now(),
                 status: this.orders[index].status,
-                price:this.orders[index].price,
-                old_price_offered:this.order.price,
-                new_price_offered:data['new_price']
+                old_price_offered:order.price,
+                new_price_offered:data.body.new_price_offered
             }
         }
     }
