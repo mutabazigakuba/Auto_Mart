@@ -10,7 +10,7 @@ class PurchaseModel {
         const newOrder = {
             id: this.orders.length + 1,
             car_id: data.body.car_id,
-            created_on: moment.now,
+            created_on: moment.now(),
             status: data.body.status,
             price:data.body.price,
             price_offered:data.body.price_offered
@@ -43,9 +43,9 @@ class PurchaseModel {
             status: true,
             data: {
                 car_id: this.order.car_id,
-                created_on: moment.now,
-                status: this.order.status,
-                price:this.order.price,
+                created_on: moment.now(),
+                status: this.orders[index].status,
+                price:this.orders[index].price,
                 old_price_offered:this.order.price,
                 new_price_offered:data['new_price']
             }

@@ -56,6 +56,15 @@ describe ('Auto_Mart', () =>{
                 done()
         })
         
+        it('Return on MarkSold to be JSON', (done) =>{
+            chai.request(app)
+                .patch('/api/v1/car/:id/status')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                } )
+                done()
+        })
+        
     })
     
 })

@@ -15,6 +15,20 @@ const CarController = {
         })
     },
 
+    markSold(req, res){
+        const mark_sold = CarModel.soldCar(req, req);
+        if(mark_sold.status === false){
+            return res.status(401).send({
+                status: 401,
+                Error: mark_sold.message,
+            })
+        }
+        return res.status(200).send({
+            status: 200,
+            data: mark_sold.data
+        })
+    }
+
 }
 
 export default CarController;
