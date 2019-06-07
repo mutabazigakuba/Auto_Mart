@@ -22,7 +22,7 @@ class CarModel {
         return newCar;
     }
 
-    soldCar(id, data){
+    update(id, data){
         const car_sold = this.cars.find( car_sold => car_sold.id === id);
         if(!car_sold){
             return{

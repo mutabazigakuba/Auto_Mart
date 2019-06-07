@@ -16,7 +16,7 @@ const CarController = {
     },
 
     markSold(req, res){
-        const mark_sold = CarModel.soldCar(req, req);
+        const mark_sold = CarModel.update(req, req);
         if(mark_sold.status === false){
             return res.status(401).send({
                 status: 401,
@@ -26,6 +26,20 @@ const CarController = {
         return res.status(200).send({
             status: 200,
             data: mark_sold.data
+        })
+    },
+
+    updatePrice (req, res){
+        const update_price = CarModel.update(req, req);
+        if(update_price.status === false){
+            return res.status(401).send({
+                status: 401,
+                Error: update_price.message,
+            })
+        }
+        return res.status(200).send({
+            status: 200,
+            data: update_price.data
         })
     }
 

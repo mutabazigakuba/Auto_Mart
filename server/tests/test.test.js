@@ -47,7 +47,7 @@ describe ('Auto_Mart', () =>{
     })
 
     describe('PATCH REQUEST', () => {
-        it('Return on UpdatePrice to be JSON', (done) =>{
+        it('Return on UpdatePriceByBuyer to be JSON', (done) =>{
             chai.request(app)
                 .patch('/api/v1/order/:id/price')
                 .end( (req, res) =>{
@@ -59,6 +59,15 @@ describe ('Auto_Mart', () =>{
         it('Return on MarkSold to be JSON', (done) =>{
             chai.request(app)
                 .patch('/api/v1/car/:id/status')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                } )
+                done()
+        })
+
+        it('Return on UpdatePriceBySeller to be JSON', (done) =>{
+            chai.request(app)
+                .patch('/api/v1/car/:id/price')
                 .end( (req, res) =>{
                     expect(res).to.be.json;
                 } )
