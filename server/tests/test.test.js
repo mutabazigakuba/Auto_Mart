@@ -85,6 +85,15 @@ describe ('Auto_Mart', () =>{
                 } )
                 done()
         })
+
+        it('Return on AllAvailable to be JSON', (done) =>{
+            chai.request(app)
+                .get('/api/v1/carstatus=:status')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                } )
+                done()
+        })
     })
     
     

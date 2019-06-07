@@ -56,6 +56,20 @@ const CarController = {
             status: 200,
             data: spec_car.data
         })
+    },
+
+    displayUnsoldCars(req, res){
+        const un_sold_cars = CarModel.findUnsold(req.params.status);
+        if(un_sold_cars.status === false){
+            return res.status(401).send({
+                status:402,
+                error:un_sold_cars.message
+            })
+        }
+        return res.status(200).send({
+            status:200,
+            data: un_sold_cars.data
+        })
     }
 
 }

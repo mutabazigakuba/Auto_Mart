@@ -85,6 +85,22 @@ class CarModel {
             }
         }
     }
+
+    findUnsold(unsold){
+        const find_unsold = this.cars.find(car => car.status === unsold);
+        if(!find_unsold){
+            return{
+                status:false,
+                error:"All cars are sold"
+            }
+        }
+        // const allUnsoldCars = [];
+        // this.find_unsold.push(allUnsoldCars);
+        return {
+            status:true,
+            data: find_unsold
+        }
+    }
 }
 
 export default new CarModel;
