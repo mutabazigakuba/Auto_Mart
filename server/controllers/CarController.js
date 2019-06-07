@@ -41,6 +41,20 @@ const CarController = {
             status: 200,
             data: update_price.data
         })
+    },
+
+    displayOne(req, res){
+        const spec_car = CarModel.findOneCar(req, req);
+        if(spec_car.status === false){
+            return res.status(401).send({
+                status: 401,
+                Error: spec_car.message,
+            })
+        }
+        return res.status(200).send({
+            status: 200,
+            data: spec_car.data
+        })
     }
 
 }

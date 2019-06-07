@@ -44,8 +44,33 @@ class CarModel {
             status:true,
             data:{
                 id: car_sold,
-                owner: this.reflections[index].owner,
-                created_on: this.reflections[index].created_on,
+                owner: this.cars[index].owner,
+                created_on: this.cars[index].created_on,
+                state: this.cars[index].state,
+                status: this.cars[index].status,
+                price:this.cars[index].price,
+                manufacturer:this.cars[index].manufacturer,
+                model:this.cars[index].model,
+                body_type:this.cars[index].body_type
+            }
+        }
+    }
+
+    findOneCar(id){
+        const specific_Car = this.cars.find( car => car.id === id);
+        if(!specific_Car){
+            return{
+                status:false,
+                message:" Car not available"
+            }
+        }
+        const index = this.cars.indexOf(specific_Car);
+        return {
+            status:true,
+            data:{
+                id: specific_Car,
+                owner: this.cars[index].owner,
+                created_on: this.cars[index].created_on,
                 state: this.cars[index].state,
                 status: this.cars[index].status,
                 price:this.cars[index].price,

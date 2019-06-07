@@ -75,5 +75,17 @@ describe ('Auto_Mart', () =>{
         })
         
     })
+
+    describe('GET REQUESTS', () => {
+        it('Return on GetCar to be JSON', (done) =>{
+            chai.request(app)
+                .get('/api/v1/car/:id')
+                .end( (req, res) =>{
+                    expect(res).to.be.json;
+                } )
+                done()
+        })
+    })
+    
     
 })
