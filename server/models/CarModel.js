@@ -116,7 +116,11 @@ class CarModel {
             status:true,
             data: "Car Ad deleted successfully"
         };
-      }
+    }
+
+    findAll() {
+        return this.cars;
+    }
 }
 
 export default new CarModel;

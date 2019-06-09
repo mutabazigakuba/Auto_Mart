@@ -15,5 +15,6 @@ routes.patch('/api/v1/car/:id/price', Car.updatePrice);
 routes.get('/api/v1/car/:id', Car.displayOne);
 routes.get('/api/v1/car/status/:status', Car.displayUnsoldCars);
 routes.delete('/api/v1/car/:id', Car.deleteAd);
+routes.get('/api/v1/car', Car.viewAll);
 
 export default routes;

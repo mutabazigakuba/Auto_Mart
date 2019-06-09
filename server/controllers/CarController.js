@@ -84,6 +84,14 @@ const CarController = {
             status: 200,
             data: spec_car.data
         })
+    },
+
+    viewAll(req, res){
+        const cars = CarModel.findAll();
+        return res.status(200).send({
+            status:200,
+            data: cars
+        });
     }
 
 }
