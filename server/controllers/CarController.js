@@ -70,6 +70,20 @@ const CarController = {
             status:200,
             data: un_sold_cars.data
         })
+    },
+
+    deleteAd(req, res){
+        const spec_car = CarModel.delete(parseInt(req.params.id));
+        if(spec_car.status === false){
+            return res.status(401).send({
+                status: 401,
+                Error: spec_car.message,
+            })
+        }
+        return res.status(200).send({
+            status: 200,
+            data: spec_car.data
+        })
     }
 
 }

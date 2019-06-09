@@ -101,6 +101,22 @@ class CarModel {
             data: find_unsold
         }
     }
+
+    delete(id) {
+        const car = this.findOne(id);
+        if(!car){
+            return{
+                status:false,
+                message:"Car not  found"
+            }
+        }
+        const index = this.cars.indexOf(car);
+        this.cars.splice(index, 1);
+        return {
+            status:true,
+            data: "Car Ad deleted successfully"
+        };
+      }
 }
 
 export default new CarModel;
