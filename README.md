@@ -1,4 +1,7 @@
+
 # ADC_Auto_Mart
+
+[![Build Status](https://travis-ci.com/mutabazigakuba/Auto_Mart.svg?branch=master)](https://travis-ci.com/mutabazigakuba/Auto_Mart)
 
 ## Descritpion
 
