@@ -1,5 +1,6 @@
 import express from 'express';
 import body_parser from 'body-parser';
+import routes from './routes/Routes';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -7,8 +8,8 @@ const PORT = process.env.PORT || 8000;
 app.use(body_parser.urlencoded({extended: true}));
 app.use(body_parser.json());
 
-app.get('/', (req, res) =>{
-    res.send('Hello Auto Mart');
-});
+app.use(routes);
 
 app.listen(PORT, () =>{ console.log(`Listening on port ${PORT}`)});
+
+export default app
