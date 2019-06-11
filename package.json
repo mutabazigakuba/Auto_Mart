@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require @babel/register server/**/**/**test.js --exit",
-    "start": " babel-node server/index.js",
+    "start": "babel-node server/index.js",
     "dev-start": "nodemon --exec babel-node server/index.js"
   },
   "repository": {
@@ -26,14 +26,14 @@
     "chai-http": "^4.3.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0"
-  },
-  "devDependencies": {
+    "moment": "^2.24.0",
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.4",
+    "@babel/register": "^7.4.4"
+  },
+  "devDependencies": {
     "eslint": "^5.16.0",
     "mocha": "^6.1.4"
   }
