@@ -80,7 +80,7 @@
     background: #FFFFFF;
 }
 .navbar a:hover {
-    background-color: #ccc; 
+    background-color: green; 
 }
 .navbar a.active {
     background-color: #555555;

@@ -81,7 +81,7 @@
     background: #FFFFFF;
 }
 .navbar a:hover {
-    background-color: #ccc; 
+    background-color: green; 
 }
 .navbar a.active {
     background-color: #555555;
@@ -119,7 +119,7 @@
     width: 40%;
 }
 .search-price button{
-    loat: right;
+    float: right;
     padding: 10px;
     margin-top: 10px;
     margin-right: 16px;
@@ -142,7 +142,7 @@
 }
 .column_center a:hover, .column_right a:hover{
     text-decoration: underline;
-    color: white;
+    color: green;
 }
 .footer{
     width: 100%;
