@@ -34,9 +34,13 @@
     width: 20%;
     min-height: 500px;
     text-align: center;
+    padding: 0px 0px 0px 0px;
+}
+.image_container{
+    margin: 0px 0px 50px 0px;
 }
 .column_center table{
-    margin: 20px 0px 0px 10%;
+    margin: 20px 0px 0px 5%;
     width: 65%;
 }
 .column_center input{
@@ -83,9 +87,9 @@
     background-color: #555555;
     color: white;
 }
-.search-container {
+/* .search-container {
     float: right;
-} 
+}
 .search-container input {
     padding: 10px;
     margin-top: 10px;
@@ -94,6 +98,28 @@
 }
 .search-container button {
     float: right;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 16px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 0px 5px 5px 0px;
+} */
+.search-price {
+    float: right;
+    margin: 10px 0px 30px 0px;
+}
+.search-price input{
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #000000;
+    border-radius: 2px 2px 2px 2px;
+    width: 40%;
+}
+.search-price button{
+    loat: right;
     padding: 10px;
     margin-top: 10px;
     margin-right: 16px;
