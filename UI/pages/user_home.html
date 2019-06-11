@@ -20,6 +20,7 @@
             <div style="width: 40%;" class="column_center">
                 <h2 > ALL CARS </h2>
                     <form action="">
+                        <div class="image_container" >
                             <table style="margin-top: 10px; width: 90%;" >
                                 <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
                                 <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
@@ -28,14 +29,62 @@
                                     <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
                                 </tr>
                             </table>
+                        </div>
+                        <div class="image_container" >
+                                <table style="margin-top: 10px; width: 90%;" >
+                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
+                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
+                                    <tr>
+                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
+                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
+                                    </tr>
+                                </table>
+                        </div>
+                        <div class="image_container" >
+                                <table style="margin-top: 10px; width: 90%;" >
+                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
+                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
+                                    <tr>
+                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
+                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
+                                    </tr>
+                                </table>
+                        </div>
+                        <div class="image_container" >
+                                <table style="margin-top: 10px; width: 90%;" >
+                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
+                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
+                                    <tr>
+                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
+                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
+                                    </tr>
+                                </table>
+                        </div>
                     </form>
-                    <a href="" ><p style="text-align:left" >View all unsold cars</p></a>
+                    <a href="./view_all.html" ><p style="text-align:left" >View all unsold cars</p></a>
             </div>
             <div style="width: 30%;" class="column_right">
-                <div class="search-container">
+                <!-- <div class="search-container">
                     <form action="">
                       <input type="text" placeholder="Search.." name="search">
                       <button type="submit">SUBMIT</button>
+                    </form>
+                </div> -->
+                <h3> Price Range </h3>
+                <div class="search-price" >
+                    <form action="">
+                        <input type="number" placeholder="min-price">
+                        <input type="number" placeholder="max-price">
+                        <button type="submit"> GO </button>
+                    </form>
+                </div>
+                <div>
+                <h3> Car State </h3>
+                    <form action="">
+                        <table style="width:100%" >
+                                <tr> <input type="radio" name="car_type"  value="New Cars"> New Cars </tr>
+                                <tr> <input type="radio"  name="car_type" value="Old Cars"> Old Cars </tr>
+                        </table>
                     </form>
                 </div>
             </div>
