@@ -2,6 +2,7 @@
     font-family: monospace;
     outline: none;
     background: #E6E6E6;
+    font-size: 15px;
 }
 body{
     margin: 0 auto;
@@ -31,19 +32,19 @@ body{
 }
 .column_left{
     float: left;
-    width: 33%;
-    height: auto;
+    width: 10%;
+    min-height: 400px;
 }
 .column_center{
-    width: 33%;
+    width: 80%;
     float: left;
-    height: auto;
+    min-height: 400px;
     
 }
 .column_right{
     float: left;
-    width: 33%;
-    height: auto;
+    width: 10%;
+    min-height: 400px;
 }
 .image_container{
     margin: 0px 0px 50px 0px;

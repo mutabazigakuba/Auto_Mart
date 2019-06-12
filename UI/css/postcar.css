@@ -119,7 +119,7 @@ body{
 }
 .column_center a:hover, .column_right a:hover{
     text-decoration: underline;
-    color: white;
+    color: green;
 }
 .footer{
     width: 100%;

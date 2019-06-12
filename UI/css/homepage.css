@@ -39,30 +39,11 @@ body{
     text-align: center;
 }
 .image_container{
-    margin: 0px 0px 50px 0px;
+    margin: 0px 0px 50px 50px;
+    width: 80%;
 }
-.column_center table{
-    margin: 20px 0px 0px 5%;
-    width: 65%;
-}
-.column_center input{
+.image_container img {
     width: 100%;
-    border-radius: 5px;
-    padding: 12px 0px 12px 20px;
-    margin: 5px 0px 5px 0px;
-    border: 2px solid #000000;
-}
-.column_center button{
-    width: 100px;
-    border-radius: 5px;
-    padding: 8px 0px 8px 0px;
-    margin: 25px 0px 0px 0px;
-    background: #555555;
-    border: 2px solid #000000;
-    font-weight: bolder;
-    font-size: 18px;
-    color: #FFFFFF;
-    cursor: pointer;
 }
 .row:after {
     content: "";
@@ -89,17 +70,19 @@ body{
     background-color: #555555;
     color: white;
 }
-/* .search-container {
-    float: right;
+.search-container {
+    float: left;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
 }
 .search-container input {
     padding: 10px;
     margin-top: 10px;
     border: 1px solid #000000;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 2px 2px 2px 2px;
 }
-.search-container button {
-    float: right;
+.search-container button, .search-price button, .car_state button {
+    float: center;
     padding: 10px;
     margin-top: 10px;
     margin-right: 16px;
@@ -107,29 +90,23 @@ body{
     border: none;
     cursor: pointer;
     border: 1px solid #000000;
-    border-radius: 0px 5px 5px 0px;
-} */
+    border-radius: 5px 5px 5px 5px;
+} 
 .search-price {
-    float: right;
-    margin: 10px 0px 30px 0px;
+    float: left;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
 }
 .search-price input{
     padding: 10px;
-    margin-top: 10px;
     border: 1px solid #000000;
     border-radius: 2px 2px 2px 2px;
-    width: 40%;
+    margin: 0px 0px 10px 0px;
 }
-.search-price button{
-    float: right;
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 16px;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    border: 1px solid #000000;
-    border-radius: 0px 5px 5px 0px;
+.car_state{
+    float: left;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
 }
 .column_center img{
     width:100%; 
@@ -141,6 +118,7 @@ body{
 .column_center a, .column_right a{
     text-decoration: underline;
     color: #000000;
+    margin: 0px 15px 0px 15px;
 }
 .column_center a:hover, .column_right a:hover{
     text-decoration: underline;

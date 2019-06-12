@@ -86,26 +86,6 @@ body{
     background-color: #555555;
     color: white;
 }
-.search-container {
-    float: right;
-} 
-.search-container input {
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #000000;
-    border-radius: 5px 0px 0px 5px;
-}
-.search-container button {
-    float: right;
-    padding: 10px;
-    margin-top: 10px;
-    margin-right: 16px;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    border: 1px solid #000000;
-    border-radius: 0px 5px 5px 0px;
-}
 .column_center img{
     width:90%; 
     height:250px; 
@@ -119,7 +99,7 @@ body{
 }
 .column_center a:hover, .column_right a:hover{
     text-decoration: underline;
-    color: white;
+    color:green;
 }
 .footer{
     width: 100%;
