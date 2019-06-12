@@ -2,7 +2,9 @@
     font-family: monospace;
     outline: none;
     background: #E6E6E6;
-    font-size: 18px;
+}
+body{
+    margin: 0 auto;
 }
 .navbar{
     height: 50px;
@@ -46,23 +48,30 @@
 .image_container{
     margin: 0px 0px 50px 0px;
 }
-.column_left img, .column_center img, .column_right img{
-    width:100%; 
-    height:250px; 
+.cars_section{
+    display: inline-flex;
+}
+.car_section{
+    width: 100%;
+}
+.single_car{
+    float: left;
+    min-width: 25%;
+    margin: 0px 0px 50px 0px;
+}
+.single_car img{
+    width:95%; 
     border-radius: 5px; 
     border: 2px solid #555555;
     object-fit: cover;
 }
-.column_left a, .column_center a, .column_right a{
+.single_car a{
     text-decoration: underline;
     color: #000000;
 }
-.column_left a:hover, .column_center :hover, .column_right a:hover{
+.single_car a:hover{
     text-decoration: underline;
-    color: black;
-}
-.column_left table, .column_center table, .column_right table{
-    width: 90%;
+    color: green;
 }
 .footer{
     width: 100%;

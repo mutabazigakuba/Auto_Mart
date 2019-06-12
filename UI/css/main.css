@@ -2,7 +2,9 @@
     font-family: monospace;
     outline: none;
     background: #E6E6E6;
-    font-size: 18px;
+}
+body{
+    margin: 0 auto;
 }
 @keyframes heartbeat {
     from {transform: scale(1); transform-origin: center center; animation-timing-function: ease-out;}
@@ -52,20 +54,68 @@
 }
 .column_left{
     float: left;
-    width: 20%;
-    height: 500px;
+    width: 5%;
+    min-height: 500px;
 }
 .column_center{
-    width: 60%;
+    width: 90%;
     float: left;
-    height: 500px;
+    min-height: 500px;
     text-align: center;
 }
 .column_right{
     float: left;
-    width: 20%;
-    height: 500px;
+    width: 5%;
+    min-height: 500px;
 }
+.column_center-upper{
+    height: 300px;
+    padding: 50px 0px 50px 0px; 
+}
+.column_center-upper h2{
+    font-size: 25px;
+    margin-bottom: 0px;
+}
+.column_center-upper button{
+    width: 100px;
+    border-radius: 5px;
+    padding: 8px 0px 8px 0px;
+    margin: 5px 20px 0px 0px;
+    background: #555555;
+    border: 2px solid #000000;
+    font-weight: bolder;
+    font-size: 18px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.image_container{
+    margin: 0px 0px 50px 0px;
+}
+.cars_section{
+    display: inline-flex;
+}
+.car_section{
+    width: 100%;
+}
+.single_car{
+    float: left;
+    min-width: 25%;
+    margin: 0px 0px 50px 0px;
+}
+.single_car img{
+    width:95%; 
+    border-radius: 5px; 
+    border: 2px solid #555555;
+    object-fit: cover;
+}
+.single_car a{
+    text-decoration: underline;
+    color: #000000;
+}
+.single_car a:hover{
+    text-decoration: underline;
+    color: green;
+    }
 .footer{
     width: 100%;
     background: #000000;
@@ -77,4 +127,22 @@
     color: #FFFFFF;
     margin: 50px 0px 0px 0px;
     background: #000000;
+}
+@media only screen and (max-width: 600px) {
+} 
+
+@media only screen and (min-width: 600px) {
+
+} 
+
+@media only screen and (min-width: 768px) {
+
+} 
+
+@media only screen and (min-width: 992px) {
+
+} 
+
+@media only screen and (min-width: 1200px) {
+
 }
