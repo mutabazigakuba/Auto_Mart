@@ -86,20 +86,48 @@ class CarModel {
         }
     }
 
-    findUnsold(unsold){
-        const find_unsold = this.cars.find(car => car.status === unsold);
+    findUnsold(available){
+        const find_unsold = this.cars.find(car => car.status === available);
         if(!find_unsold){
             return{
                 status:false,
                 error:"All cars are sold"
             }
         }
-        // const allUnsoldCars = [];
-        // this.find_unsold.push(allUnsoldCars);
         return {
             status:true,
             data: find_unsold
         }
+    }
+
+    priceRange(prices){
+        const minPrice = prices.min_price;
+        const maxPrice = prices.max_price;
+        const available = prices.status;
+
+        const find_unsold_cars = this.cars.find(car => car.status === available);
+        if(!find_unsold_cars){
+            return{
+                status:false,
+                error:"All cars are sold"
+            }
+        }else{
+            const actual_car_price = find_unsold_cars.price;
+            if (actual_car_price <= maxPrice && actual_car_price >= minPrice){
+                return {
+                    status:true,
+                    data: find_unsold_cars
+                }
+            }
+            return {
+                status: false,
+                data: "Car within Price range not found"
+            }
+        }
+        
+
+        
+
     }
 }
 
