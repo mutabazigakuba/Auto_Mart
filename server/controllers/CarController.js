@@ -59,7 +59,7 @@ const CarController = {
     },
 
     displayUnsoldCars(req, res){
-        const un_sold_cars = CarModel.findUnsold(req.params.status);
+        const un_sold_cars = CarModel.findUnsold(req.query.status);
         if(un_sold_cars.status === false){
             return res.status(401).send({
                 status:402,

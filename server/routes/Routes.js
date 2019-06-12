@@ -13,6 +13,6 @@ routes.patch('/api/v1/order/:id/price', Order.updatePrice);
 routes.patch('/api/v1/car/:id/status', Car.markSold);
 routes.patch('/api/v1/car/:id/price', Car.updatePrice);
 routes.get('/api/v1/car/:id', Car.displayOne);
-routes.get('/api/v1/carstatus=:status', Car.displayUnsoldCars);
+routes.get('/api/v1/car', Car.displayUnsoldCars);
 
 export default routes;
