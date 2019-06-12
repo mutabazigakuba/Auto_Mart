@@ -4,6 +4,9 @@
     outline: none;
     background: #E6E6E6;
 }
+body{
+    margin: 0 auto;
+}
 @keyframes title_animation{
 }
 .user_title{

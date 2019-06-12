@@ -4,6 +4,9 @@
     outline: none;
     background: #E6E6E6;
 }
+body{
+    margin: 0 auto;
+}
 @keyframes title_animation{
 }
 .user_title{
@@ -104,7 +107,7 @@
     border-radius: 0px 5px 5px 0px;
 }
 .column_center img{
-    width:100%; 
+    width:90%; 
     height:250px; 
     border-radius: 5px; 
     border: 2px solid #555555;
@@ -130,3 +133,28 @@
     margin: 50px 0px 0px 0px;
     background: #000000;
 }
+@media only screen and (max-width: 600px) {
+    .column_center table{
+        margin: 20px 0px 0px 10%;
+        width: 95%;
+    }
+    .column_center input{
+        width: 90%;
+        border-radius: 5px;
+        padding: 12px 0px 12px 20px;
+        margin: 5px 0px 5px 0px;
+        border: 2px solid #000000;
+    }
+    .column_center button{
+        width: 60px;
+        border-radius: 5px;
+        padding: 8px 0px 8px 0px;
+        margin: 25px 0px 0px 0px;
+        background: #555555;
+        border: 2px solid #000000;
+        font-weight: bolder;
+        font-size: 15px;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+} 

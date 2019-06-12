@@ -2,7 +2,9 @@
     font-family: monospace;
     outline: none;
     background: #E6E6E6;
-    font-size: 18px;
+}
+body{
+    margin: 0 auto;
 }
 @keyframes heartbeat {
     from {transform: scale(1); transform-origin: center center; animation-timing-function: ease-out;}
@@ -89,25 +91,31 @@
 .image_container{
     margin: 0px 0px 50px 0px;
 }
-.column_center table{
-    margin: 20px 0px 0px 5%;
-    width: 95%;
+.cars_section{
+    display: inline-flex;
 }
-.column_center img{
-    width:100%; 
-    height:250px; 
+.car_section{
+    width: 100%;
+}
+.single_car{
+    float: left;
+    min-width: 25%;
+    margin: 0px 0px 50px 0px;
+}
+.single_car img{
+    width:95%; 
     border-radius: 5px; 
     border: 2px solid #555555;
     object-fit: cover;
 }
-.column_center a{
+.single_car a{
     text-decoration: underline;
     color: #000000;
 }
-.column_center a:hover{
+.single_car a:hover{
     text-decoration: underline;
     color: green;
-}
+    }
 .footer{
     width: 100%;
     background: #000000;
@@ -119,4 +127,22 @@
     color: #FFFFFF;
     margin: 50px 0px 0px 0px;
     background: #000000;
+}
+@media only screen and (max-width: 600px) {
+} 
+
+@media only screen and (min-width: 600px) {
+
+} 
+
+@media only screen and (min-width: 768px) {
+
+} 
+
+@media only screen and (min-width: 992px) {
+
+} 
+
+@media only screen and (min-width: 1200px) {
+
 }
