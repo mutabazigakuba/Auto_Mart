@@ -2,7 +2,9 @@
     font-family: monospace;
     outline: none;
     background: #E6E6E6;
-    font-size: 20px;
+}
+body{
+    margin: 0 auto;
 }
 @keyframes heartbeat {
     from {transform: scale(1); transform-origin: center center; animation-timing-function: ease-out;}
@@ -113,213 +115,27 @@
     margin: 50px 0px 0px 0px;
     background: #000000;
 }
-@media (max-width:400px){
-    *{
-        font-size: 10px;
-    }
-    .title{
-        height: 20px;
-        text-align: center;
-        padding: 1px 0px 1px 0px;
-    }
-    .title h1{
-        font-size: 20px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: infinite;       
-    }
-    .navbar{
-        height: 10px;
-        text-align: center;
-        padding: 0px 1px 1px 0px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: 10s; 
-    }
-    .title h1{
-        font-size: 15px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: infinite;       
-    }
-    .column_left{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center{
-        width: 80%;
-        float: left;
-        text-align: center;
-    }   
-    .column_right{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center h2{
-        font-size: 15px;
-    }
-    .column_center table{
-        margin: 0px 0px 0px 5%;
-        width: 80%;
-    }
-    .column_center input{
-        width: 100%;
-        border-radius: 5px;
-        padding: 8px 0px 8px 20px;
-        margin: 5px 0px 5px 0px;
-        border: 2px solid #000000;
-    }
-    .column_center button{
-        width: 80%;
-        border-radius: 5px;
-        padding: 2px 10px 2px 10px;
-        margin: 25px 0px 10px 0px;
-        background: transparent;
-        border: 2px solid #000000;
-        font-weight: bolder;
-        font-size: 10px;
-        color: #000000;
-        cursor: pointer;
-    }
-}
-@media (max-width:550px){
-    *{
-        font-size: 15px;
-    }
+@media only screen and (max-width: 600px) {
     .title{
         height: 40px;
         text-align: center;
         padding: 10px 0px 15px 0px;
+        margin: 0px 0px 40px 0px;
     }
     .title h1{
         font-size: 50px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: infinite;       
     }
     .navbar{
-        height: 10px;
+        height: 40px;
         text-align: center;
-        padding: 0px 10px 10px 0px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: 10s; 
-    }
-    .title h1{
-        font-size: 20px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: infinite;       
-    }
-    .column_left{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center{
-        width: 80%;
-        float: left;
-        text-align: center;
-    }   
-    .column_right{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center h2{
-        font-size: 20px;
+        padding: 20px 20px 10px 0px;
     }
     .column_center table{
         margin: 0px 0px 0px 5%;
-        width: 80%;
-    }
-    .column_center input{
-        width: 100%;
-        border-radius: 5px;
-        padding: 8px 0px 8px 20px;
-        margin: 5px 0px 5px 0px;
-        border: 2px solid #000000;
-    }
-    .column_center button{
-        width: 80%;
-        border-radius: 5px;
-        padding: 5px 10px 5px 10px;
-        margin: 25px 0px 10px 0px;
-        background: transparent;
-        border: 2px solid #000000;
-        font-weight: bolder;
-        font-size: 15px;
-        color: #000000;
-        cursor: pointer;
-    }
-}
-@media (max-width:750px){
-    *{
-        font-size: 20px;
-    }
-    .title h1{
-        font-size: 50px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: infinite;       
-    }
-    .navbar{
-        height: 20px;
-        text-align: center;
-        padding: 25px 10px 5px 0px;
-        animation: heartbeat ;
-        animation-duration: 1.5s;
-        transition-timing-function: ease-in-out;
-        animation-iteration-count: 10s; 
-    }
-    .column_left{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center{
-        width: 80%;
-        float: left;
-        text-align: center;
-    }   
-    .column_right{
-        float: left;
-        width: 10%;
-        height: 350px;
-    }
-    .column_center h2{
-        font-size: 35px;
-    }
-    .column_center table{
-        margin: 0px 0px 0px 10%;
-        width: 80%;
-    }
-    .column_center input{
-        width: 100%;
-        border-radius: 5px;
-        padding: 10px 0px 10px 20px;
-        margin: 5px 0px 5px 0px;
-        border: 2px solid #000000;
+        width: 85%;
     }
     .column_center button{
         width: 50%;
-        border-radius: 5px;
-        padding: 10px 10px 10px 10px;
-        margin: 25px 0px 15px 0px;
-        background: transparent;
-        border: 2px solid #000000;
-        font-weight: bolder;
-        font-size: 20px;
-        color: #000000;
-        cursor: pointer;
+        font-size: 15px;
     }
 }
