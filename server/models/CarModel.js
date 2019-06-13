@@ -3,7 +3,19 @@ import moment from 'moment';
 class CarModel {
 
     constructor(){
-        this.cars = [];
+        this.cars = [
+            {
+                id: 1,
+                owner: "Ronald",
+                created_on: moment.now(),
+                state: "new",
+                status: "Sold",
+                price: "2,000,000",
+                manufacturer:"Toyota",
+                model:"2019",
+                body_type:"truck"
+            }
+        ];
     }
 
     addNewCar(data){
@@ -26,7 +38,7 @@ class CarModel {
         return this.cars.find( car => car.id === id);
     }
 
-    update(id, data){
+    updateCarPrice(id, data){
         const car_sold = this.findOne(id);
         if(!car_sold){
             return{
@@ -34,30 +46,43 @@ class CarModel {
                 message:" Car not available"
             }
         }
-        const index = this.cars.indexOf(car_sold);
-        this.cars[index].status = data['status'] || car_sold.status;
-        this.cars[index].owner = data['owner'] || car_sold.owner;
-        this.cars[index].state = data['state'] || car_sold.state;
-        this.cars[index].status = data.body.change_status || car_sold.status;
-        this.cars[index].price = data['price'] || car_sold.price;
-        this.cars[index].manufacturer = data['manufacturer'] || car_sold.manufacturer;
-        this.cars[index].model = data['model'] || car_sold.model;
-        this.cars[index].body_type = data['body_type'] || car_sold.body_type;
-        this.cars[index].created_on = moment.now()
         return{
             status:true,
-            data:{
+            data:[ {
                 id: car_sold.id,
-                owner: this.cars[index].owner,
-                created_on: this.cars[index].created_on,
-                state: this.cars[index].state,
-                status: this.cars[index].status,
-                price:this.cars[index].price,
-                new_price: data.body.new_price,
-                manufacturer:this.cars[index].manufacturer,
-                model:this.cars[index].model,
-                body_type:this.cars[index].body_type
+                owner: car_sold.owner,
+                created_on: moment.now(),
+                state: car_sold.state,
+                status: car_sold.status,
+                price: data.body.new_price,
+                manufacturer:car_sold.manufacturer,
+                model:car_sold.model,
+                body_type:car_sold.body_type
+            }]
+        }
+    }
+
+    markCarSold(id, data){
+        const car_sold = this.findOne(id);
+        if(!car_sold){
+            return{
+                status:false,
+                message:" Car not available"
             }
+        }
+        return{
+            status:true,
+            data:[{
+                id: car_sold.id,
+                owner: car_sold.owner,
+                created_on: moment.now(),
+                state: car_sold.state,
+                status: data.body.status,
+                price: car_sold.price,
+                manufacturer:car_sold.manufacturer,
+                model:car_sold.model,
+                body_type:car_sold.body_type
+            }]
         }
     }
 
@@ -72,7 +97,7 @@ class CarModel {
         const index = this.cars.indexOf(specific_Car);
         return {
             status:true,
-            data:{
+            data:[{
                 id: specific_Car.id,
                 owner: specific_Car.owner,
                 created_on: this.cars[index].created_on,
@@ -82,7 +107,7 @@ class CarModel {
                 manufacturer:this.cars[index].manufacturer,
                 model:this.cars[index].model,
                 body_type:this.cars[index].body_type
-            }
+            }]
         }
     }
 
@@ -94,8 +119,6 @@ class CarModel {
                 error:"All cars are sold"
             }
         }
-        // const allUnsoldCars = [];
-        // this.find_unsold.push(allUnsoldCars);
         return {
             status:true,
             data: find_unsold

@@ -1,46 +1,74 @@
 import CarModel from '../models/CarModel';
+import Joi from 'joi';
 
 const CarController = {
     postCar(req, res){
-        if(!req.body.price || !req.body.manufacturer || !req.body.model){
+        const schema = {
+            owner: Joi.string().required() ,
+            state: Joi.string().required(),
+            price: Joi.number().required(),
+            manufacturer: Joi.string().required(),
+            model: Joi.string().required(),
+            body_type: Joi.string().required()
+        };
+        const result = Joi.validate(req.body, schema);
+        if(result.error){
             return res.status(400).send({
                 "status": 400,
-                "Error": "There is an empty field!"
+                "error": result.error.details[0].message
             });
         }
         const car = CarModel.addNewCar(req);
-        return res.status(200).send({
-            "status":200,
+        return res.status(201).send({
+            "status":201,
             "data": car
         })
     },
 
     markSold(req, res){
-        const mark_sold = CarModel.update(req, req);
-        if(mark_sold.status === false){
-            return res.status(401).send({
-                status: 401,
-                Error: mark_sold.message,
+        const find = CarModel.findOne(parseInt(req.params.id));
+        const schema = {
+            status: Joi.string().required()
+        };
+        const result = Joi.validate(req.body, schema)
+        if(result.error){
+            return res.status(400).send({
+                 "status": 400,
+                 "error": result.error.details[0].message
+                });
+        }
+        if(find.status === false){
+            return res.status(400).send({
+                "status": 400,
+                "error": find.message,
             })
         }
-        return res.status(200).send({
-            status: 200,
-            data: mark_sold.data
+        const mark_sold = CarModel.markCarSold(parseInt(req.params.id), req)
+        return res.status(205).send({
+            "status": 205,
+            "data": mark_sold.data
         })
     },
 
-    updatePrice (req, res){
+    updatePrice(req, res){
+        const schema = {
+            new_price: Joi.number().required()
+        };
+        const result = Joi.validate(req.body, schema);
+        if(result.error){
+            return res.status(400).json(result.error.details[0].message);
+        }
         const find = CarModel.findOne(parseInt(req.params.id));
         if(!find){
             return res.status(401).send({
-                status: 401,
-                Error: "Car with that price not found",
+                "status": 401,
+                "error": "Car with that price not found",
             })
         }
-        const update_price = CarModel.update(parseInt(req.params.id), req)
+        const update_price = CarModel.updateCarPrice(parseInt(req.params.id), req)
         return res.status(200).send({
-            status: 200,
-            data: update_price.data
+            "status": 200,
+            "data": update_price.data
         })
     },
 
@@ -48,13 +76,13 @@ const CarController = {
         const spec_car = CarModel.findOneCar(parseInt(req.params.id));
         if(spec_car.status === false){
             return res.status(401).send({
-                status: 401,
-                Error: spec_car.message,
+                "status": 401,
+                "error": spec_car.message,
             })
         }
         return res.status(200).send({
-            status: 200,
-            data: spec_car.data
+            "status": 200,
+            "data": spec_car.data
         })
     },
 
@@ -62,13 +90,13 @@ const CarController = {
         const un_sold_cars = CarModel.findUnsold(req.params.status);
         if(un_sold_cars.status === false){
             return res.status(401).send({
-                status:402,
-                error:un_sold_cars.message
+                "status":402,
+                "error":un_sold_cars.message
             })
         }
         return res.status(200).send({
-            status:200,
-            data: un_sold_cars.data
+            "status":200,
+            "data": un_sold_cars.data
         })
     },
 
@@ -76,21 +104,21 @@ const CarController = {
         const spec_car = CarModel.delete(parseInt(req.params.id));
         if(spec_car.status === false){
             return res.status(401).send({
-                status: 401,
-                Error: spec_car.message,
+                "status": 404,
+                "error": spec_car.message,
             })
         }
         return res.status(200).send({
-            status: 200,
-            data: spec_car.data
+            "status": 200,
+            "data": spec_car.data
         })
     },
 
     viewAll(req, res){
         const cars = CarModel.findAll();
         return res.status(200).send({
-            status:200,
-            data: cars
+            "status":200,
+            "data": cars
         });
     }
 
