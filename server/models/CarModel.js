@@ -111,8 +111,8 @@ class CarModel {
         }
     }
 
-    findUnsold(unsold){
-        const find_unsold = this.cars.find(car => car.status === unsold);
+    findUnsold(available){
+        const find_unsold = this.cars.find(car => car.status === available);
         if(!find_unsold){
             return{
                 status:false,
@@ -125,24 +125,34 @@ class CarModel {
         }
     }
 
-    delete(id) {
-        const car = this.findOne(id);
-        if(!car){
+    priceRange(prices){
+        const minPrice = prices.min_price;
+        const maxPrice = prices.max_price;
+        const available = prices.status;
+
+        const find_unsold_cars = this.cars.find(car => car.status === available);
+        if(!find_unsold_cars){
             return{
                 status:false,
-                message:"Car not  found"
+                error:"All cars are sold"
+            }
+        }else{
+            const actual_car_price = find_unsold_cars.price;
+            if (actual_car_price <= maxPrice && actual_car_price >= minPrice){
+                return {
+                    status:true,
+                    data: find_unsold_cars
+                }
+            }
+            return {
+                status: false,
+                data: "Car within Price range not found"
             }
         }
-        const index = this.cars.indexOf(car);
-        this.cars.splice(index, 1);
-        return {
-            status:true,
-            data: "Car Ad deleted successfully"
-        };
-    }
+        
 
-    findAll() {
-        return this.cars;
+        
+
     }
 }
 

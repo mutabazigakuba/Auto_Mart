@@ -87,13 +87,36 @@ const CarController = {
     },
 
     displayUnsoldCars(req, res){
-        const un_sold_cars = CarModel.findUnsold(req.params.status);
-        if(un_sold_cars.status === false){
-            return res.status(401).send({
-                "status":402,
-                "error":un_sold_cars.message
+        const queryLength = Object.entries(req.query).length;
+
+        if(req.query.status === "available" && queryLength === 1){
+            const un_sold_cars = CarModel.findUnsold(req.query.status);
+            if(un_sold_cars.status === false){
+                return res.status(401).send({
+                    status:402,
+                    error:un_sold_cars.message
+                })
+            }
+            return res.status(200).send({
+                status:200,
+                data: un_sold_cars.data
             })
         }
+        
+        if( req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3){
+            const priceRange = CarModel.priceRange(req.query);
+            if(priceRange.status === false){
+                return res.status(401).send({
+                    status:401,
+                    error:priceRange.data
+                })
+            }
+            return res.status(200).send({
+                status:200,
+                data: priceRange.data
+            })
+        }
+
         return res.status(200).send({
             "status":200,
             "data": un_sold_cars.data
