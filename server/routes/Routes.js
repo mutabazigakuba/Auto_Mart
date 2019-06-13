@@ -16,5 +16,8 @@ routes.get('/api/v1/car/:id/', Car.displayOne);
 routes.get('/api/v1/car', Car.displayUnsoldCars);
 routes.delete('/api/v1/car/:id/', Car.deleteAd);
 routes.get('/api/v1/car/', Car.viewAll);
+routes.get('/', (req,res) =>{
+    res.send("AutoMart");
+});
 
 export default routes;
