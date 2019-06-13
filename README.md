@@ -3,6 +3,8 @@
 
 [![Build Status](https://travis-ci.com/mutabazigakuba/Auto_Mart.svg?branch=develop)](https://travis-ci.com/mutabazigakuba/Auto_Mart)
 
+[![Coverage Status](https://coveralls.io/repos/github/mutabazigakuba/Auto_Mart/badge.svg?branch=develop)](https://coveralls.io/github/mutabazigakuba/Auto_Mart?branch=develop)
+
 ## Descritpion
 
 Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With
