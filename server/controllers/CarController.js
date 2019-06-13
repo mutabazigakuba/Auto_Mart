@@ -88,7 +88,6 @@ const CarController = {
 
     displayUnsoldCars(req, res){
         const queryLength = Object.entries(req.query).length;
-
         if(req.query.status === "available" && queryLength === 1){
             const un_sold_cars = CarModel.findUnsold(req.query.status);
             if(un_sold_cars.status === false){
@@ -116,7 +115,7 @@ const CarController = {
                 data: priceRange.data
             })
         }
-
+        console.log("here");
         return res.status(200).send({
             "status":200,
             "data": un_sold_cars.data

@@ -88,7 +88,6 @@ describe ('Auto_Mart', () =>{
 
         it('Return on AllAvailable to be JSON', (done) =>{
             chai.request(app)
-<<<<<<< HEAD
                 .get('/api/v1/car/status/:status')
                 .end( (req, res) =>{
                     expect(res).to.be.json;
@@ -98,27 +97,16 @@ describe ('Auto_Mart', () =>{
 
         it('Return on AllCars to be JSON', (done) =>{
             chai.request(app)
-=======
->>>>>>> ft-unsold_cars_in_price_range-166564864
                 .get('/api/v1/car')
                 .end( (req, res) =>{
                     expect(res).to.be.json;
                 } )
                 done()
         })
-<<<<<<< HEAD
-    })
-
-    describe('DELETE REQUEST', () =>{
-        it('Return on DeleteAd to be JSON', (done) =>{
-            chai.request(app)
-                .delete('/api/v1/car/:id')
-=======
 
         it('Return on AllAvailableInPriceRange to be JSON', (done) =>{
             chai.request(app)
                 .get('/api/v1/car')
->>>>>>> ft-unsold_cars_in_price_range-166564864
                 .end( (req, res) =>{
                     expect(res).to.be.json;
                 } )
