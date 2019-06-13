@@ -8,19 +8,36 @@ class UserModel {
 
     addNewUser (data){
         const id = this.users.length + 1;
-        const hPassword = helper.hashPassword(data.body.password);
+        // const hPassword = helper.hashPassword(data.body.password);
         const token = helper.generateToken(id);
 
+        const checkEmail = data.body.email;
+        const findUser = this.users.find( user => user.email === checkEmail);
+        if(findUser){
+            return{
+                status:false,
+                data: "The email " +checkEmail+ " already used"
+            }
+        }
+        const confirmPass = data.body.confirm_password
+        const pass = data.body.password;
+        if(confirmPass !== pass){
+            return {
+                status: false,
+                data: "Passwords Do not Match"
+            }
+        }
         const newUser = {
             id: id,
             first_name: data.body.first_name,
             last_name: data.body.last_name,
             email: data.body.email,
             status: data.body.status,
-            password: hPassword,
+            password: data.body.password,
             confirm_password: data.body.confirm_password,
             token: token
         };
+        
         this.users.push(newUser);
         return newUser;
     }
@@ -33,8 +50,8 @@ class UserModel {
                 message: "Unregistered User"
             }
         }
-        const comparePassword = helper.comparePassword(findUser.password, password)
-        if(!comparePassword){
+        const newPassword = password.body.password
+        if(!(newPassword === findUser.password)){
             return{
                 status:false,
                 message:"Wrong Password Please"

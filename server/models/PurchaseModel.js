@@ -4,7 +4,14 @@ import { stringify } from 'querystring';
 class PurchaseModel {
 
     constructor(){
-        this.orders = [];
+        this.orders = [{
+            id: 1,
+            car_id: 1,
+            created_on: moment.now(),
+            status: "available",
+            price: 200000,
+            price_offered: 190000
+        }];
     }
 
     addNewOrder(data){
@@ -28,7 +35,7 @@ class PurchaseModel {
         const order = this.findOne(id);
         const index = this.orders.indexOf(order);
         const order_status = this.orders[index].status;
-        if(!order_status == "pending"){
+        if(!(order_status == "pending")){
             return {
                 status: false,
                 message: "Order cannot be changed"
@@ -40,14 +47,14 @@ class PurchaseModel {
         this.orders[index].price = data['price'] || order.price
         return {
             status: true,
-            data: {
-                id:order.id,
-                car_id:this.orders[index].car_id,
+            message: [{
+                id: order.id,
+                car_id: order.car_id,
                 created_on: moment.now(),
-                status: this.orders[index].status,
-                old_price_offered:order.price,
+                status: order.status,
+                old_price_offered:8888 ,
                 new_price_offered:data.body.new_price_offered
-            }
+            }]
         }
     }
 }
