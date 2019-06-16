@@ -17,3 +17,6 @@ Auto Mart, users can sell their cars or buy from trusted dealerships or private 
 2. open folder of your choosing in your PC 
 3. type `git clone URL`
 4. double click on the index file to view project
+
+## To view the site on gh-pages
+visit the link [AutoMart](https://mutabazigakuba.github.io/Auto_Mart/UI/index.html)

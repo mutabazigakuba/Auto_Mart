@@ -1,148 +1,160 @@
 * {
-    font-family: monospace;
-    outline: none;
-    background: #E6E6E6;
+  font-family: monospace;
+  outline: none;
+  background: #e6e6e6;
 }
-body{
-    margin: 0 auto;
+body {
+  margin: 0 auto;
 }
 @keyframes heartbeat {
-    from {transform: scale(1); transform-origin: center center; animation-timing-function: ease-out;}
-    10% {transform: scale(0.91); animation-timing-function: ease-in;}
-    17% {transform: scale(0.98); animation-timing-function: ease-out;}
-    33% {transform: scale(0.87); animation-timing-function: ease-in;}
-    45% {transform: scale(1); animation-timing-function: ease-out;}
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.91);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.87);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
 }
-.title{
-    height: 70px;
-    text-align: center;
-    padding: 10px 0px 15px 0px;
+.title {
+  height: 70px;
+  text-align: center;
+  padding: 10px 0px 15px 0px;
 }
-.title h1{
-    font-size: 40px;
-    animation: heartbeat ;
-    animation-duration: 1.5s;
-    transition-timing-function: ease-in-out;
-    animation-iteration-count: infinite;       
+.title h1 {
+  font-size: 40px;
+  animation: heartbeat;
+  animation-duration: 1.5s;
+  transition-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
-.navbar{
-    height: 30px;
-    text-align: center;
-    padding: 30px 50px 10px 0px;
-    animation: heartbeat ;
-    animation-duration: 1.5s;
-    transition-timing-function: ease-in-out;
-    animation-iteration-count: 10s; 
+.navbar {
+  height: 30px;
+  text-align: center;
+  padding: 30px 50px 10px 0px;
+  animation: heartbeat;
+  animation-duration: 1.5s;
+  transition-timing-function: ease-in-out;
+  animation-iteration-count: 10s;
 }
 .topnav a {
-    color: #000000;
-    padding: 0px 10px 0px 10px;
-    text-decoration: none;
+  color: #000000;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
 }
 .topnav a:hover {
-    text-decoration: underline;
-    color: #000000;
+  text-decoration: underline;
+  color: #000000;
 }
 .active {
-    background-color: transparent;
-    color: blue;
+  background-color: transparent;
+  color: blue;
 }
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
+  content: "";
+  display: table;
+  clear: both;
 }
-.column_left{
-    float: left;
-    width: 5%;
-    min-height: 500px;
+.column_left {
+  float: left;
+  width: 5%;
+  min-height: 500px;
 }
-.column_center{
-    width: 90%;
-    float: left;
-    min-height: 500px;
-    text-align: center;
+.column_center {
+  width: 90%;
+  float: left;
+  min-height: 500px;
+  text-align: center;
 }
-.column_right{
-    float: left;
-    width: 5%;
-    min-height: 500px;
+.column_right {
+  float: left;
+  width: 5%;
+  min-height: 500px;
 }
-.column_center-upper{
-    height: 300px;
-    padding: 50px 0px 50px 0px; 
+.column_center-upper {
+  height: 300px;
+  padding: 50px 0px 50px 0px;
 }
-.column_center-upper h2{
-    font-size: 25px;
-    margin-bottom: 0px;
+.column_center-upper h2 {
+  font-size: 25px;
+  margin-bottom: 0px;
 }
-.column_center-upper button{
-    width: 100px;
-    border-radius: 5px;
-    padding: 8px 0px 8px 0px;
-    margin: 5px 20px 0px 0px;
-    background: #555555;
-    border: 2px solid #000000;
-    font-weight: bolder;
-    font-size: 18px;
-    color: #FFFFFF;
-    cursor: pointer;
+.column_center-upper button {
+  width: 100px;
+  border-radius: 5px;
+  padding: 8px 0px 8px 0px;
+  margin: 5px 20px 0px 0px;
+  background: #555555;
+  border: 2px solid #000000;
+  font-weight: bolder;
+  font-size: 18px;
+  color: #ffffff;
+  cursor: pointer;
 }
-.image_container{
-    margin: 0px 0px 50px 0px;
+.image_container {
+  margin: 0px 0px 50px 0px;
 }
-.cars_section{
-    display: inline-flex;
+.cars_section {
+  display: inline-flex;
 }
-.car_section{
-    width: 100%;
+.car_section {
+  width: 100%;
 }
-.single_car{
-    float: left;
-    min-width: 25%;
-    margin: 0px 0px 50px 0px;
+.single_car {
+  float: left;
+  min-width: 25%;
+  margin: 0px 0px 50px 0px;
 }
-.single_car img{
-    width:95%; 
-    border-radius: 5px; 
-    border: 2px solid #555555;
-    object-fit: cover;
+.single_car img {
+  width: 95%;
+  border-radius: 5px;
+  border: 2px solid #555555;
+  object-fit: cover;
 }
-.single_car a{
-    text-decoration: underline;
-    color: #000000;
+.single_car a {
+  text-decoration: underline;
+  color: #000000;
 }
-.single_car a:hover{
-    text-decoration: underline;
-    color: green;
-    }
-.footer{
-    width: 100%;
-    background: #000000;
-    height: 100px;
-    border: 1px solid #000000;
-    text-align: center;
+.single_car a:hover {
+  text-decoration: underline;
+  color: green;
 }
-.footer h5{
-    color: #FFFFFF;
-    margin: 50px 0px 0px 0px;
-    background: #000000;
+.footer {
+  width: 100%;
+  background: #000000;
+  height: 100px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+.footer h5 {
+  color: #ffffff;
+  margin: 50px 0px 0px 0px;
+  background: #000000;
 }
 @media only screen and (max-width: 600px) {
-} 
+}
 
 @media only screen and (min-width: 600px) {
-
-} 
+}
 
 @media only screen and (min-width: 768px) {
-
-} 
+}
 
 @media only screen and (min-width: 992px) {
-
-} 
+}
 
 @media only screen and (min-width: 1200px) {
-
 }
