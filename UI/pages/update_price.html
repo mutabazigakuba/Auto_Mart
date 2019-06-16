@@ -1,71 +1,59 @@
 <html>
-    <head>
-        <title>Auto Mart</title>
-        <link rel="stylesheet" href="../css/homepage.css">
-    </head>
-    <body>
-        <div class="user_title" >
-            <h2>User Name</h2>
-        </div>
-        <div class="row">
-            <div class="column_left" >
-                <div class="navbar" >
-                    <a href="./user_home.html">Home</a>
-                    <a href="./post_car.html">POST A CAR</a>
-                    <a href="./buy_car.html">BUY A CAR</a>
-                    <a href="./update_price.html" class="active" >YOUR POSTS</a>
-                    <a href="./purchases.html"> PURCHASES & ORDERS</a>
-                </div>
-            </div>
-            <div class="column_center">
-                <form action="">
-                        <div class="image_container" >
-                                <table style="margin-top: 10px; width: 90%;" >
-                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
-                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
-                                    <tr>
-                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
-                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
-                                    </tr>
-                                </table>
-                        </div>
-                        <div class="image_container" >
-                                <table style="margin-top: 10px; width: 90%;" >
-                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
-                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
-                                    <tr>
-                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
-                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
-                                    </tr>
-                                </table>
-                        </div>
-                        <div class="image_container" >
-                                <table style="margin-top: 10px; width: 90%;" >
-                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
-                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
-                                    <tr>
-                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
-                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
-                                    </tr>
-                                </table>
-                        </div>
-                        <div class="image_container" >
-                                <table style="margin-top: 10px; width: 90%;" >
-                                    <tr><td colspan="2" ><img src="../images/toyota.jpg" alt="toyota"> </td></tr>
-                                    <tr><td colspan="2" >Toyota, 2001, Hammer, 5M</td></tr>
-                                    <tr>
-                                        <td style="text-align:left;"><a href="./buy_car.html">Purchase</a></td>
-                                        <td style="text-align:left"><a href="./fraudulent.html">Flag/Report</a></td>
-                                    </tr>
-                                </table>
-                        </div>
-                </form>
-                <a href="./view_all.html" ><p style="text-align:left" >View all unsold cars</p></a>
+
+<head>
+    <title>Auto Mart</title>
+    <link rel="stylesheet" href="../css/postcar.css">
+</head>
+
+<body>
+    <div class="user_title">
+        <h2>User Name</h2>
+    </div>
+    <div class="row">
+        <div class="column_left">
+            <div class="navbar">
+                <a href="./user_home.html">Home</a>
+                <a href="./post_car.html" class="active">POST A CAR</a>
+                <a href="./buy_car.html">BUY A CAR</a>
+                <a href="./user_post.html">YOUR POSTS</a>
+                <a href="./purchases.html"> PURCHASES & ORDERS</a>
             </div>
         </div>
-        <div class="footer" >
-            <h5> &#169 Auto Mart <script type="text/javascript">document.write( new Date().getFullYear() );</script>.</h5>
+        <div class="column_center">
+            <h2> UPDATE PRICE OF AD ? </h2>
+            <form action="" method="">
+                <table style="margin:10px 0px 0px 15%;">
+                    <tr>
+                        <td colspan="2"><input type="text" placeholder="Car Make" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" placeholder="Car Model" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" placeholder="Body Type" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="number" min="1" placeholder="Price( Frws)" required></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;"><button type="submit"> POST IT </button></td>
+                        <td style="text-align:center;"><button type="reset"> CANCEL </button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
-        <script src="./scripts/javascript.js" ></script>
-    </body>
+        <div class="column_right">
+            <h3>RECENT POSTS</h3>
+            <ul style="text-align:left;">
+                <li><a href="./user_post.html">Benz, 1999, Hard BOdy, 8M</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <h5> &#169 Auto Mart
+            <script type="text/javascript">document.write(new Date().getFullYear());</script>.</h5>
+    </div>
+    <script src="./scripts/javascript.js"></script>
+</body>
+
 </html>
