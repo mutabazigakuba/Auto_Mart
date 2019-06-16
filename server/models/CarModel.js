@@ -54,7 +54,7 @@ class CarModel {
                 created_on: moment.now(),
                 state: car_sold.state,
                 status: car_sold.status,
-                price: data.body.price,
+                price: data.body.new_price,
                 manufacturer: car_sold.manufacturer,
                 model: car_sold.model,
                 body_type: car_sold.body_type
@@ -138,7 +138,7 @@ class CarModel {
         }
         const actual_car_price = find_unsold_cars.price;
         if (actual_car_price < maxPrice) {
-            if(actual_car_price > minPrice){
+            if (actual_car_price > minPrice) {
                 return {
                     status: true,
                     data: find_unsold_cars

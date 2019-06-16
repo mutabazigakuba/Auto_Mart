@@ -4,16 +4,16 @@ import SECRET from '../.env';
 
 const Helper = {
 
-    hashPassword (password) {
+    hashPassword(password) {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     },
 
-    comparePassword (hashPassword, password) {
+    comparePassword(hashPassword, password) {
         return bcrypt.compare(password, hashPassword);
     },
 
-    generateToken (id) {
-        const token = jwt.sign({ userId: id}, "SECRET", { expiresIn: '7d' });
+    generateToken(id) {
+        const token = jwt.sign({ userId: id }, "SECRET", { expiresIn: '7d' });
         return token;
     }
 }
