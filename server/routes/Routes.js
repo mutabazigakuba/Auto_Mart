@@ -15,7 +15,7 @@ routes.patch('/api/v1/car/:id/price', Car.updatePrice);
 routes.get('/api/v1/car/:id/', Car.displayOne);
 routes.get('/api/v1/car', Car.displayUnsoldCars);
 routes.delete('/api/v1/car/:id/', Car.deleteAd);
-routes.get('/api/v1/car/', Car.viewAll);
+routes.get('/api/v1/cars/', Car.viewAll);
 routes.get('/', (req,res) =>{
     res.send("Welcome to Auto Mart");
 });

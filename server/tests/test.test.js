@@ -88,7 +88,7 @@ describe ('Auto_Mart', () =>{
 
         it('Return on AllCars to be JSON', (done) =>{
             chai.request(app)
-                .get('/api/v1/car/')
+                .get('/api/v1/cars/')
                 .end( (req, res) =>{
                     expect(res).to.be.json;
                 } )
