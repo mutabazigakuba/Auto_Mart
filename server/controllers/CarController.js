@@ -52,11 +52,13 @@ const CarController = {
 
     updatePrice(req, res){
         const schema = {
-            new_price: Joi.number().required()
+            price: Joi.number().required()
         };
         const result = Joi.validate(req.body, schema);
         if(result.error){
-            return res.status(400).json(result.error.details[0].message);
+            return res.status(400).send({
+                "status": 400,
+                "error": result.error.details[0].message});
         }
         const find = CarModel.findOne(parseInt(req.params.id));
         if(!find){
@@ -91,7 +93,7 @@ const CarController = {
         if(req.query.status === "available" && queryLength === 1){
             const unSoldCars = CarModel.findUnsold(req.query.status);
             if(unSoldCars.status === false){
-                return res.status(401).send({
+                return res.status(402).send({
                     status:402,
                     error:unSoldCars.message
                 })
@@ -115,16 +117,12 @@ const CarController = {
                 data: priceRange.data
             })
         }
-        // return res.status(200).send({
-        //     "status":200,
-        //     "data": unSoldCars.data
-        // })
     },
 
     deleteAd(req, res){
         const spec_car = CarModel.delete(parseInt(req.params.id));
         if(spec_car.status === false){
-            return res.status(401).send({
+            return res.status(404).send({
                 "status": 404,
                 "error": spec_car.message,
             })

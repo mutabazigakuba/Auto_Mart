@@ -19,7 +19,7 @@ const UserController = {
         }
         const user = UserModel.addNewUser(req);
         if(user.status === false){
-            return res.status(401).send({
+            return res.status(409).send({
                 "status": 409,
                 "error": user.data,
             })
@@ -44,7 +44,9 @@ const UserController = {
         };
         const result = Joi.validate(req.body, schema);
         if(result.error){
-            return res.status(400).json(result.error.details[0].message);
+            return res.status(400).send({
+                "status": 400,
+                 "error": result.error.details[0].message});
         }
 
         if (login_user.status == false) {
