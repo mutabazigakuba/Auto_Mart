@@ -58,10 +58,12 @@ const UserController = {
             })
         }
         try {
-
             const { rows } = await db.query(createQuery, values);
             const token = Helper.generateToken(rows[0]);
-            return res.status(201).send(token);
+            return res.status(201).send({
+                "status": 201,
+                "data": token
+            });
         } catch (error) {
             return res.status(400).send({
                 "status": 400,
@@ -70,8 +72,7 @@ const UserController = {
         }
     },
 
-    login(req, res) {
-        const login_user = UserModel.login(req, req);
+    async login(req, res) {
         const schema = {
             email: Joi.string().required(),
             password: Joi.string().min(6).required()
@@ -83,20 +84,39 @@ const UserController = {
                 "error": result.error.details[0].message
             });
         }
-
-        if (login_user.status == false) {
-            return res.status(401).send({
-                "status": 401,
-                "error": login_user.message,
+        if (!Helper.isValidEmail(req.body.email)) {
+            return res.status(400).send({
+                "status": 400,
+                "error": 'Please enter a valid email address'
+            });
+        }
+        const text = 'SELECT * FROM users WHERE email = $1';
+        try {
+            const { rows } = await db.query(text, [req.body.email]);
+            if (!rows[0]) {
+                return res.status(400).send({ 
+                    "status": 400,
+                    "error": "The credentials you provided are incorrect"
+                 });
+            }
+            if (!(rows[0].password === req.body.password)) {
+                return res.status(400).send({ 
+                    "status": 400,
+                    "error": "The credentials you provided do not match"
+                 });
+            }
+            const token = Helper.generateToken(rows[0].id);
+            return res.status(200).send({ 
+                "status": 200,
+                "data": token
+             });
+        } catch (error) {
+            console.log(error)
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
             })
         }
-
-        return res.status(202).send({
-            "status": 202,
-            "data": login_user.data
-        })
-
-
     }
 
 }
