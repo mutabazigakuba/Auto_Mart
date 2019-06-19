@@ -29,7 +29,7 @@ const CarController = {
             req.body.owner,
             moment.now(),
             req.body.state,
-            req.body.status,
+            "available",
             req.body.price,
             req.body.manufacturer,
             req.body.model,
