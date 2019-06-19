@@ -4,11 +4,11 @@
   "description": "Auto Mart is an online marketplace for automobiles of diverse makes, model or body type. With\r Auto Mart, users can sell their cars or buy from trusted dealerships or private sellers.",
   "main": "index.js",
   "scripts": {
-    "createUser": "node --require @babel/register server/migrations/userMigrations/createUser.js",
+    "createTable": "node --require @babel/register server/migrations/createTables.js",
     "test": "mocha --require @babel/register server/**/**/**test.js --exit ",
-    "start": " npm run createUser && babel-node server/index.js",
-    "dev-start": "npm run createUser && nodemon --exec babel-node server/index.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls "
+    "start": "npm run createTable && babel-node server/index.js",
+    "dev-start": "npm run createTable && nodemon --exec babel-node server/index.js",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",

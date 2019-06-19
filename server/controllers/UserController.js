@@ -1,8 +1,8 @@
 import UserModel from '../models/UserModel';
 import Joi from 'joi';
-import Users from '../migrations/userMigrations/createUser';
 import db from '../config/db';
 import Helper from '../helpers/Helper'
+import '@babel/polyfill'
 
 const UserController = {
     async create(req, res) {
@@ -11,7 +11,8 @@ const UserController = {
             last_name: Joi.string().required(),
             email: Joi.string().email().required(),
             password: Joi.string().min(6).required(),
-            confirm_password: Joi.string().min(6).required()
+            confirm_password: Joi.string().min(6).required(),
+            address: Joi.string().required()
         };
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -40,14 +41,15 @@ const UserController = {
             })
         }
         const createQuery = `INSERT INTO
-            users(first_name, last_name, email, password)
-            VALUES($1, $2, $3, $4)
+            users(first_name, last_name, email, password, address)
+            VALUES($1, $2, $3, $4, $5)
             returning *`;
         const values = [
             req.body.first_name,
             req.body.last_name,
             req.body.email,
             req.body.password,
+            req.body.address
         ];
         const queryText = 'SELECT * FROM users WHERE email=$1';
         const mailData = await db.query(queryText, [req.body.email]);
@@ -62,7 +64,7 @@ const UserController = {
             const token = Helper.generateToken(rows[0]);
             return res.status(201).send({
                 "status": 201,
-                "data": token
+                "data": rows
             });
         } catch (error) {
             return res.status(400).send({
@@ -108,7 +110,10 @@ const UserController = {
             const token = Helper.generateToken(rows[0].id);
             return res.status(200).send({ 
                 "status": 200,
-                "data": token
+                "data": [{
+                    token,
+                    rows
+                }]
              });
         } catch (error) {
             console.log(error)
