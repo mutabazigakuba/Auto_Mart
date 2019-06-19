@@ -122,18 +122,23 @@ const CarController = {
 
     },
 
-    displayOne(req, res) {
-        const spec_car = CarModel.findOneCar(parseInt(req.params.id));
-        if (spec_car.status === false) {
-            return res.status(401).send({
-                "status": 401,
-                "error": spec_car.message,
-            })
+    async displayOne(req, res) {
+        const text = 'SELECT * FROM cars WHERE id = $1';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({ 
+                    "status": 404,
+                    "error": "Car not found"
+                 });
+            }
+            return res.status(200).send({
+                "status": 200,
+                "data": rows[0]
+            });
+        } catch (error) {
+            return res.status(400).send(error)
         }
-        return res.status(200).send({
-            "status": 200,
-            "data": spec_car.data
-        })
     },
 
     displayUnsoldCars(req, res) {
