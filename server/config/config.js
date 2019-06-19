@@ -1,10 +1,10 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const CONFIG = {}
 
-CONFIG.dburl=process.env.DB_URL || "myPathToDb";
-CONFIG.secretkey=process.env.SECRET || 'mySecret';
+CONFIG.dburl="postgres://postgres:1234@localhost:5432/automart";
+CONFIG.secretkey="SECRET1234";
 
-export default CONFIG;
+module.exports = CONFIG;

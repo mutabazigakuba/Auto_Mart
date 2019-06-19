@@ -1,15 +1,21 @@
-import pg from 'pg';
-import CONFIG from './config'
+import { Pool } from 'pg'; 
+import CONFIG from './config'; 
 
-class SetDb {
-    constructor(){
-        this.pool = new pg.Pool({
-            connectionString: process.env.DATABASE_URL || CONFIG.dburl
-        });
-        this.pool.on('connect', () =>{
-            console.log("DB is connected");
-        });
-    }
-}
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL || CONFIG.dburl
+});
 
-export default SetDb;
+
+export default {
+    query(queryText, params) {
+      return new Promise((resolve, reject) => {
+        pool.query(queryText, params)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      });
+    },
+  };

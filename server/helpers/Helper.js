@@ -8,8 +8,12 @@ const Helper = {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     },
 
-    comparePassword (hashPassword, password) {
+    comparePassword (pass, password) {
         return bcrypt.compare(password, hashPassword);
+    },
+
+    isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
     },
 
     generateToken (id) {
