@@ -5,9 +5,9 @@ import moment from 'moment';
 import db from '../config/db'
 
 const CarController = {
-    async postCar(req, res){
+    async postCar(req, res) {
         const schema = {
-            owner: Joi.string().required() ,
+            owner: Joi.string().required(),
             state: Joi.string().required(),
             price: Joi.number().required(),
             manufacturer: Joi.string().required(),
@@ -15,7 +15,7 @@ const CarController = {
             body_type: Joi.string().required()
         };
         const result = Joi.validate(req.body, schema);
-        if(result.error){
+        if (result.error) {
             return res.status(400).send({
                 "status": 400,
                 "error": result.error.details[0].message
@@ -39,7 +39,7 @@ const CarController = {
             const { rows } = await db.query(createQuery, values);
             return res.status(201).send({
                 "status": 201,
-                "data": rows 
+                "data": rows
             });
         } catch (error) {
             console.log(error)
@@ -50,43 +50,55 @@ const CarController = {
         }
     },
 
-    markSold(req, res){
-        const find = CarModel.findOne(parseInt(req.params.id));
+    async markSold(req, res) {
         const schema = {
             status: Joi.string().required()
         };
         const result = Joi.validate(req.body, schema)
-        if(result.error){
-            return res.status(400).send({
-                 "status": 400,
-                 "error": result.error.details[0].message
-                });
-        }
-        if(find.status === false){
+        if (result.error) {
             return res.status(400).send({
                 "status": 400,
-                "error": find.message,
-            })
+                "error": result.error.details[0].message
+            });
         }
-        const mark_sold = CarModel.markCarSold(parseInt(req.params.id), req)
-        return res.status(205).send({
-            "status": 205,
-            "data": mark_sold.data
-        })
+        const findOneQuery = 'SELECT * FROM cars WHERE id=$1';
+        const updateOneQuery = `UPDATE cars SET status=$1 WHERE id=$2 returning *`;
+        try {
+            const { rows } = await db.query(findOneQuery, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "Order not found"
+                });
+            }
+            const values = [req.body.status, req.params.id];
+            const response = await db.query(updateOneQuery, values);
+            return res.status(200).send({
+                "status": 200,
+                "data": response.rows[0]
+            });
+        } catch (err) {
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
+            });
+        }
+
     },
 
-    updatePrice(req, res){
+    updatePrice(req, res) {
         const schema = {
             price: Joi.number().required()
         };
         const result = Joi.validate(req.body, schema);
-        if(result.error){
+        if (result.error) {
             return res.status(400).send({
                 "status": 400,
-                "error": result.error.details[0].message});
+                "error": result.error.details[0].message
+            });
         }
         const find = CarModel.findOne(parseInt(req.params.id));
-        if(!find){
+        if (!find) {
             return res.status(401).send({
                 "status": 401,
                 "error": "Car with that price not found",
@@ -99,9 +111,9 @@ const CarController = {
         })
     },
 
-    displayOne(req, res){
+    displayOne(req, res) {
         const spec_car = CarModel.findOneCar(parseInt(req.params.id));
-        if(spec_car.status === false){
+        if (spec_car.status === false) {
             return res.status(401).send({
                 "status": 401,
                 "error": spec_car.message,
@@ -113,40 +125,40 @@ const CarController = {
         })
     },
 
-    displayUnsoldCars(req, res){
+    displayUnsoldCars(req, res) {
         const queryLength = Object.entries(req.query).length;
-        if(req.query.status === "available" && queryLength === 1){
+        if (req.query.status === "available" && queryLength === 1) {
             const unSoldCars = CarModel.findUnsold(req.query.status);
-            if(unSoldCars.status === false){
+            if (unSoldCars.status === false) {
                 return res.status(402).send({
-                    status:402,
-                    error:unSoldCars.message
+                    status: 402,
+                    error: unSoldCars.message
                 })
             }
             return res.status(200).send({
-                status:200,
+                status: 200,
                 data: unSoldCars.data
             })
         }
-        
-        if( req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3){
+
+        if (req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3) {
             const priceRange = CarModel.priceRange(req.query);
-            if(priceRange.status === false){
+            if (priceRange.status === false) {
                 return res.status(401).send({
-                    status:401,
-                    error:priceRange.data
+                    status: 401,
+                    error: priceRange.data
                 })
             }
             return res.status(200).send({
-                status:200,
+                status: 200,
                 data: priceRange.data
             })
         }
     },
 
-    deleteAd(req, res){
+    deleteAd(req, res) {
         const spec_car = CarModel.delete(parseInt(req.params.id));
-        if(spec_car.status === false){
+        if (spec_car.status === false) {
             return res.status(404).send({
                 "status": 404,
                 "error": spec_car.message,
@@ -158,10 +170,10 @@ const CarController = {
         })
     },
 
-    viewAll(req, res){
+    viewAll(req, res) {
         const cars = CarModel.findAll();
         return res.status(200).send({
-            "status":200,
+            "status": 200,
             "data": cars
         });
     }
