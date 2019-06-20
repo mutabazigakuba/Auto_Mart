@@ -165,6 +165,28 @@ const CarController = {
             }
         }
 
+        if (queryLength === 1 && req.query.body_type) {
+            const text = 'SELECT * FROM cars WHERE body_type = $1';
+            try {
+                const { rows } = await db.query(text, [req.query.body_type]);
+                if (!rows[0]) {
+                    return res.status(404).send({
+                        "status": 404,
+                        "error": "Car not found"
+                    });
+                }
+                return res.status(200).send({
+                    "status": 200,
+                    "data": rows
+                });
+            } catch (error) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "server error"
+                })
+            }
+        }
+
         if (req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3) {
             const text = 'SELECT * FROM cars WHERE status = $1';
             try {
@@ -198,6 +220,7 @@ const CarController = {
             }
 
         }
+
     },
 
     async deleteAd(req, res) {
@@ -227,10 +250,10 @@ const CarController = {
         const findAllQuery = 'SELECT * FROM cars';
         try {
             const { rows } = await db.query(findAllQuery);
-            return res.status(200).send({ 
+            return res.status(200).send({
                 "status": 200,
                 "data": rows
-             });
+            });
         } catch (error) {
             return res.status(400).send({
                 "status": 400,
