@@ -8,7 +8,7 @@ const Helper = {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     },
 
-    comparePassword (pass, password) {
+    comparePassword (hashPassword, password) {
         return bcrypt.compare(password, hashPassword);
     },
 
