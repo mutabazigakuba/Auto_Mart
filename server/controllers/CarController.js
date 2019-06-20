@@ -158,22 +158,45 @@ const CarController = {
                     "data": rows
                 });
             } catch (error) {
-                return res.status(400).send(error)
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "server error"
+                })
             }
         }
 
         if (req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3) {
-            const priceRange = CarModel.priceRange(req.query);
-            if (priceRange.status === false) {
-                return res.status(401).send({
-                    status: 401,
-                    error: priceRange.data
-                })
+            const text = 'SELECT * FROM cars WHERE status = $1';
+            try{
+            const { rows } = await db.query(text, [req.query.status]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "Car not found"
+                });
+            }   
+            const maxPrice = req.query.max_price;
+            const minPrice = req.query.min_price;
+
+            for(var i=0; i<rows.length; i++){
+                const actualCarPrice = rows[i].price;
+                if(actualCarPrice < maxPrice){
+                    if(actualCarPrice > minPrice){
+                        return res.status(200).send({
+                            "status": 200,
+                            "data": rows
+                        });
+                    }
+                }
             }
-            return res.status(200).send({
-                status: 200,
-                data: priceRange.data
+        }catch(err){
+            console.log(err)
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
             })
+        }
+            
         }
     },
 
