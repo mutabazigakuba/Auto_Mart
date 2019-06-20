@@ -127,10 +127,10 @@ const CarController = {
         try {
             const { rows } = await db.query(text, [req.params.id]);
             if (!rows[0]) {
-                return res.status(404).send({ 
+                return res.status(404).send({
                     "status": 404,
                     "error": "Car not found"
-                 });
+                });
             }
             return res.status(200).send({
                 "status": 200,
@@ -141,34 +141,62 @@ const CarController = {
         }
     },
 
-    displayUnsoldCars(req, res) {
+    async displayUnsoldCars(req, res) {
         const queryLength = Object.entries(req.query).length;
         if (req.query.status === "available" && queryLength === 1) {
-            const unSoldCars = CarModel.findUnsold(req.query.status);
-            if (unSoldCars.status === false) {
-                return res.status(402).send({
-                    status: 402,
-                    error: unSoldCars.message
+            const text = 'SELECT * FROM cars WHERE status = $1';
+            try {
+                const { rows } = await db.query(text, [req.query.status]);
+                if (!rows[0]) {
+                    return res.status(404).send({
+                        "status": 404,
+                        "error": "Car not found"
+                    });
+                }
+                return res.status(200).send({
+                    "status": 200,
+                    "data": rows
+                });
+            } catch (error) {
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "server error"
                 })
             }
-            return res.status(200).send({
-                status: 200,
-                data: unSoldCars.data
-            })
         }
 
         if (req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3) {
-            const priceRange = CarModel.priceRange(req.query);
-            if (priceRange.status === false) {
-                return res.status(401).send({
-                    status: 401,
-                    error: priceRange.data
-                })
+            const text = 'SELECT * FROM cars WHERE status = $1';
+            try{
+            const { rows } = await db.query(text, [req.query.status]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "Car not found"
+                });
+            }   
+            const maxPrice = req.query.max_price;
+            const minPrice = req.query.min_price;
+
+            for(var i=0; i<rows.length; i++){
+                const actualCarPrice = rows[i].price;
+                if(actualCarPrice < maxPrice){
+                    if(actualCarPrice > minPrice){
+                        return res.status(200).send({
+                            "status": 200,
+                            "data": rows
+                        });
+                    }
+                }
             }
-            return res.status(200).send({
-                status: 200,
-                data: priceRange.data
+        }catch(err){
+            console.log(err)
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
             })
+        }
+            
         }
     },
 
