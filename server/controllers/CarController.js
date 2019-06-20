@@ -167,51 +167,60 @@ const CarController = {
 
         if (req.query.status === "available" && req.query.min_price && req.query.max_price && queryLength === 3) {
             const text = 'SELECT * FROM cars WHERE status = $1';
-            try{
-            const { rows } = await db.query(text, [req.query.status]);
-            if (!rows[0]) {
-                return res.status(404).send({
-                    "status": 404,
-                    "error": "Car not found"
-                });
-            }   
-            const maxPrice = req.query.max_price;
-            const minPrice = req.query.min_price;
+            try {
+                const { rows } = await db.query(text, [req.query.status]);
+                if (!rows[0]) {
+                    return res.status(404).send({
+                        "status": 404,
+                        "error": "Car not found"
+                    });
+                }
+                const maxPrice = req.query.max_price;
+                const minPrice = req.query.min_price;
 
-            for(var i=0; i<rows.length; i++){
-                const actualCarPrice = rows[i].price;
-                if(actualCarPrice < maxPrice){
-                    if(actualCarPrice > minPrice){
-                        return res.status(200).send({
-                            "status": 200,
-                            "data": rows
-                        });
+                for (var i = 0; i < rows.length; i++) {
+                    const actualCarPrice = rows[i].price;
+                    if (actualCarPrice < maxPrice) {
+                        if (actualCarPrice > minPrice) {
+                            return res.status(200).send({
+                                "status": 200,
+                                "data": rows
+                            });
+                        }
                     }
                 }
+            } catch (err) {
+                console.log(err)
+                return res.status(400).send({
+                    "status": 400,
+                    "error": "server error"
+                })
             }
-        }catch(err){
-            console.log(err)
-            return res.status(400).send({
-                "status": 400,
-                "error": "server error"
-            })
-        }
-            
+
         }
     },
 
-    deleteAd(req, res) {
-        const spec_car = CarModel.delete(parseInt(req.params.id));
-        if (spec_car.status === false) {
-            return res.status(404).send({
-                "status": 404,
-                "error": spec_car.message,
-            })
+    async deleteAd(req, res) {
+        const deleteQuery = 'DELETE FROM cars WHERE id=$1 returning *';
+        try {
+            const { rows } = await db.query(deleteQuery, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "Car not found",
+                });
+            }
+            return res.status(204).send({
+                "status": 204,
+                "data": "Deleted Successfully"
+            });
+        } catch (error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
+            });
         }
-        return res.status(200).send({
-            "status": 200,
-            "data": spec_car.data
-        })
+
     },
 
     viewAll(req, res) {
