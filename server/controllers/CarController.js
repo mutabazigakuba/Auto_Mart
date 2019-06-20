@@ -223,12 +223,20 @@ const CarController = {
 
     },
 
-    viewAll(req, res) {
-        const cars = CarModel.findAll();
-        return res.status(200).send({
-            "status": 200,
-            "data": cars
-        });
+    async viewAll(req, res) {
+        const findAllQuery = 'SELECT * FROM cars';
+        try {
+            const { rows } = await db.query(findAllQuery);
+            return res.status(200).send({ 
+                "status": 200,
+                "data": rows
+             });
+        } catch (error) {
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
+            });
+        }
     }
 
 }
