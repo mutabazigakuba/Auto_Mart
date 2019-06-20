@@ -51,14 +51,8 @@ const PurchaseController = {
         }
     },
 
-    updatePrice(req, res) {
-        const find = PurchaseModel.findOne(parseInt(req.params.id));
-        if (!find) {
-            return res.status(401).send({
-                "status": 401,
-                "error": "Order not found",
-            })
-        }
+    async updatePrice(req, res) {
+
         const schema = {
             new_price_offered: Joi.number().required()
         };
@@ -69,11 +63,30 @@ const PurchaseController = {
                 "error": result.error.details[0].message
             });
         }
-        const update_price = PurchaseModel.updatePriceOfOrder(parseInt(req.params.id), req);
-        return res.status(200).send({
-            "status": 200,
-            "data": update_price.message
-        })
+
+        const findOneQuery = 'SELECT * FROM orders WHERE id=$1';
+        const updateOneQuery = `UPDATE orders SET price_offered=$1 WHERE id=$2 returning *`;
+        try {
+            const { rows } = await db.query(findOneQuery, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({ 
+                    "status": 404,
+                    "error": "Order not found"
+                });
+            }
+            const values = [ req.body.new_price_offered, req.params.id ];
+            const response = await db.query(updateOneQuery, values);
+            return res.status(200).send({
+                "status": 200,
+                "data": response.rows[0]
+            });
+        } catch (err) {
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
+            });
+        }
+
     }
 
 }
