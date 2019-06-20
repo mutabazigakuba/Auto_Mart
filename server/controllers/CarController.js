@@ -68,7 +68,7 @@ const CarController = {
             if (!rows[0]) {
                 return res.status(404).send({
                     "status": 404,
-                    "error": "Order not found"
+                    "error": "Car not found"
                 });
             }
             const values = [req.body.status, req.params.id];
@@ -86,7 +86,7 @@ const CarController = {
 
     },
 
-    updatePrice(req, res) {
+    async updatePrice(req, res) {
         const schema = {
             price: Joi.number().required()
         };
@@ -97,18 +97,29 @@ const CarController = {
                 "error": result.error.details[0].message
             });
         }
-        const find = CarModel.findOne(parseInt(req.params.id));
-        if (!find) {
-            return res.status(401).send({
-                "status": 401,
-                "error": "Car with that price not found",
-            })
+        const findOneQuery = 'SELECT * FROM cars WHERE id=$1';
+        const updateOneQuery = `UPDATE cars SET price=$1 WHERE id=$2 returning *`;
+        try {
+            const { rows } = await db.query(findOneQuery, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    "status": 404,
+                    "error": "Car not found"
+                });
+            }
+            const values = [req.body.price, req.params.id];
+            const response = await db.query(updateOneQuery, values);
+            return res.status(200).send({
+                "status": 200,
+                "data": response.rows[0]
+            });
+        } catch (err) {
+            return res.status(400).send({
+                "status": 400,
+                "error": "server error"
+            });
         }
-        const update_price = CarModel.updateCarPrice(parseInt(req.params.id), req)
-        return res.status(200).send({
-            "status": 200,
-            "data": update_price.data
-        })
+
     },
 
     displayOne(req, res) {
