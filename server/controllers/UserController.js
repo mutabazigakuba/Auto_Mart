@@ -11,8 +11,8 @@ const UserController = {
             last_name: Joi.string().required(),
             email: Joi.string().email().required(),
             password: Joi.string().min(6).required(),
-            confirm_password: Joi.string().min(6).required(),
-            address: Joi.string().required()
+            confirm_password: Joi.string().min(6).required()
+            // address: Joi.string().required()
         };
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -67,6 +67,7 @@ const UserController = {
                 "data": rows
             });
         } catch (error) {
+            console.log(error)
             return res.status(400).send({
                 "status": 400,
                 "error": error

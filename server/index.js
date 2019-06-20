@@ -10,6 +10,13 @@ app.use(body_parser.json());
 
 app.use(routes);
 
+app.use('*', (req,res) =>{
+    res.status(405).send({
+        "status": 405,
+        "error": "Method not available"
+    });
+});
+
 app.listen(PORT, () =>{ console.log(`Listening on port ${PORT}`)});
 
 export default app
