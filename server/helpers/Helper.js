@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import SECRET from '../.env';
+import CONFIG from '../config/config';
 
 const Helper = {
 
@@ -8,12 +8,16 @@ const Helper = {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     },
 
-    comparePassword (hashPassword, password) {
+    comparePassword (pass, password) {
         return bcrypt.compare(password, hashPassword);
     },
 
+    isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    },
+
     generateToken (id) {
-        const token = jwt.sign({ userId: id}, "SECRET", { expiresIn: '7d' });
+        const token = jwt.sign({ userId: id}, CONFIG.secretkey , { expiresIn: '7d' });
         return token;
     }
 }
