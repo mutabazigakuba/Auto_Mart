@@ -139,7 +139,7 @@ class CarModel {
         const actual_car_price = find_unsold_cars.price;
         if (actual_car_price < maxPrice) {
             if(actual_car_price > minPrice){
-                return {
+                return  {
                     status: true,
                     data: find_unsold_cars
                 }
