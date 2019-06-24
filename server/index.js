@@ -13,7 +13,7 @@ app.use(routes);
 app.use('*', (req,res) =>{
     res.status(405).send({
         "status": 405,
-        "error": "Method not available"
+        "error": "Method Not Allowed"
     });
 });
 

@@ -11,8 +11,8 @@ const UserController = {
             last_name: Joi.string().required(),
             email: Joi.string().email().required(),
             password: Joi.string().min(6).required(),
-            confirm_password: Joi.string().min(6).required()
-            // address: Joi.string().required()
+            confirm_password: Joi.string().min(6).required(),
+            address: Joi.string().required()
         };
         const result = Joi.validate(req.body, schema);
         if (result.error) {
@@ -109,12 +109,11 @@ const UserController = {
                  });
             }
             const token = Helper.generateToken(rows[0].id);
+            const data = rows[0]
+            Object.assign(data, {token: token});
             return res.status(200).send({ 
                 "status": 200,
-                "data": [{
-                    token,
-                    rows
-                }]
+                data
              });
         } catch (error) {
             console.log(error)

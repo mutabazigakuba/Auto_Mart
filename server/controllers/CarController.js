@@ -6,6 +6,7 @@ import db from '../config/db'
 
 const CarController = {
     async postCar(req, res) {
+
         const schema = {
             owner: Joi.string().required(),
             state: Joi.string().required(),
@@ -16,18 +17,17 @@ const CarController = {
         };
         const result = Joi.validate(req.body, schema);
         if (result.error) {
-            return res.status(400).send({
+            return res.state(400).send({
                 "status": 400,
                 "error": result.error.details[0].message
             });
         }
         const createQuery = `INSERT INTO
-            cars(owner, created_on, state , status, price, manufacturer, model, body_type)
-            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            cars(owner, state , status, price, manufacturer, model, body_type)
+            VALUES($1, $2, $3, $4, $5, $6, $7)
             returning *`;
         const values = [
             req.body.owner,
-            moment.now(),
             req.body.state,
             "available",
             req.body.price,
@@ -35,6 +35,7 @@ const CarController = {
             req.body.model,
             req.body.body_type
         ];
+
         try {
             const { rows } = await db.query(createQuery, values);
             return res.status(201).send({
@@ -68,7 +69,7 @@ const CarController = {
             if (!rows[0]) {
                 return res.status(404).send({
                     "status": 404,
-                    "error": "Car not found"
+                    "error": "Car Not found"
                 });
             }
             const values = [req.body.status, req.params.id];
@@ -104,7 +105,7 @@ const CarController = {
             if (!rows[0]) {
                 return res.status(404).send({
                     "status": 404,
-                    "error": "Car not found"
+                    "error": "Car Not found"
                 });
             }
             const values = [req.body.price, req.params.id];
@@ -129,7 +130,7 @@ const CarController = {
             if (!rows[0]) {
                 return res.status(404).send({
                     "status": 404,
-                    "error": "Car not found"
+                    "error": "Car Not Found"
                 });
             }
             return res.status(200).send({
@@ -150,7 +151,7 @@ const CarController = {
                 if (!rows[0]) {
                     return res.status(404).send({
                         "status": 404,
-                        "error": "Car not found"
+                        "error": "Car Not Found"
                     });
                 }
                 return res.status(200).send({
@@ -172,7 +173,7 @@ const CarController = {
                 if (!rows[0]) {
                     return res.status(404).send({
                         "status": 404,
-                        "error": "Car not found"
+                        "error": "Car Not Found"
                     });
                 }
                 return res.status(200).send({
@@ -194,7 +195,7 @@ const CarController = {
                 if (!rows[0]) {
                     return res.status(404).send({
                         "status": 404,
-                        "error": "Car not found"
+                        "error": "Car Not Found"
                     });
                 }
                 const maxPrice = req.query.max_price;
@@ -202,14 +203,16 @@ const CarController = {
 
                 for (var i = 0; i < rows.length; i++) {
                     const actualCarPrice = rows[i].price;
-                    if (actualCarPrice < maxPrice) {
-                        if (actualCarPrice > minPrice) {
-                            return res.status(200).send({
-                                "status": 200,
-                                "data": rows
-                            });
-                        }
+                    if ((actualCarPrice < maxPrice) && (actualCarPrice > minPrice)) {
+                        return res.status(200).send({
+                            "status": 200,
+                            "data": rows
+                        });
                     }
+                    return res.status(404).send({
+                        "status": 404,
+                        "error": "No Cars Found"
+                    })
                 }
             } catch (err) {
                 console.log(err)
@@ -220,6 +223,10 @@ const CarController = {
             }
 
         }
+        return res.status(405).send({
+            "status": 405,
+            "error": "Method Not Allowed"
+        })
 
     },
 
@@ -230,7 +237,7 @@ const CarController = {
             if (!rows[0]) {
                 return res.status(404).send({
                     "status": 404,
-                    "error": "Car not found",
+                    "error": "Car Not Found",
                 });
             }
             return res.status(204).send({

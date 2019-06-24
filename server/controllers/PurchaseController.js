@@ -26,12 +26,11 @@ const PurchaseController = {
             })
         }
         const createQuery = `INSERT INTO
-            orders (car_id, created_on, status, price , price_offered )
-            VALUES($1, $2, $3, $4, $5)
+            orders (car_id, status, price , price_offered )
+            VALUES($1, $2, $3, $4)
             returning *`;
         const values = [
             req.body.owner,
-            moment.now(),
             "pending",
             req.body.price,
             req.body.price_offered
